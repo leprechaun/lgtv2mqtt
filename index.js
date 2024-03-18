@@ -18,6 +18,16 @@ let foregroundApp = null
 const tvMAC = process.env.TV_MAC
 const tvIP = process.env.TV_IP
 
+const tvOptions = {
+    url: 'ws://' + tvIP + ':3000',
+    reconnect: 1000
+}
+
+if (!_.isNil(process.env.TV_CLIENT_KEY)) {
+    tvOptions['clientKey'] = process.env.TV_CLIENT_KEY
+    tvOptions['saveKey'] = function(){}
+}
+
 const mqttOptions = { retain: true, qos: 1 }
 var topic_prefix = process.env.TOPIC_PREFIX
 
@@ -53,10 +63,7 @@ const powerOff = function() {
     }
 }
 
-const lgtv = new Lgtv({
-    url: 'ws://' + tvIP + ':3000',
-    reconnect: 1000
-})
+const lgtv = new Lgtv(tvOptions)
 
 mqtt.on('error', err => {
     logging.error('mqtt: ' + err)
