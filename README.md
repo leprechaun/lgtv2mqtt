@@ -15,6 +15,14 @@
 
 You need to allow "LG Connect Apps" on your TV - see http://www.lg.com/uk/support/product-help/CT00008334-1437131798537-others
 
+- Local configuration
+
+    You will need to specify the following ENV variables
+        TV_IP: The IP or hostname of the LG TV
+        TOPIC_PREFIX: a string to be prepended to the MQTT topic hierachy this tool relies on
+        TV_CLIENT_KEY: the key that allows this software to remain authenticated with the LG TV after authorizing on the unit.
+        MQTT_HOST: the hostname and port of the MQTT broker (eg, mybroker.com:1883 or 127.0.0.1:1883)
+
 -   Install
 
 `npm install -g lgtv2mqtt`
